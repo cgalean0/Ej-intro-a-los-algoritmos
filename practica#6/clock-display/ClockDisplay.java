@@ -14,9 +14,12 @@
  */
 public class ClockDisplay
 {
+    //Hours of clock
     private NumberDisplay hours;
+    //Minutes of clock
     private NumberDisplay minutes;
-    private String displayString;    // simulates the actual display
+    // simulates the actual display
+    private String displayString;
     
     /**
      * Constructor for ClockDisplay objects. This constructor 
@@ -33,15 +36,19 @@ public class ClockDisplay
      * Constructor for ClockDisplay objects. This constructor
      * creates a new clock set at the time specified by the 
      * parameters.
+     * Precondition: 
+     * @param hour must be a value between 0 and 24.
+     * @param minute must be a value between 0 and 59.
+     * PostCondition: This constructor create a new clock with the @param hour and @param minute inserted by customer.
      */
     public ClockDisplay(int hour, int minute)
     {
-        /**
-         * El @param hour debe ser un valor entre 0 y 24.
-         * El @param minute debe ser un valor entre 0 y 59.
-         */
-        assert hour >= 0 && hour < 24;
-        assert minute >= 0 && minute < 60;
+        if (hour < 0 || hour > 24) {
+            throw new IllegalArgumentException("Value of hour is invalid!");
+        }
+        if (minute < 0 || minute > 60) {
+            throw new IllegalArgumentException("Value of minute is invalid!");   
+        }
         
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
